@@ -1,0 +1,7 @@
+language: php
+php:
+    - hhvm
+
+install:
+    - composer install
+
