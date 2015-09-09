@@ -2,9 +2,7 @@ language: php
 php:
     - 5.6
 
-before_script:
-    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS `todo-test`;"
-
 install:
+    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS `todo-test`;"
     - composer install --prefer-dist
     - php artisan migrate
