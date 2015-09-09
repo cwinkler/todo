@@ -28,3 +28,7 @@ before_script:
   - php artisan migrate
 
 script: "phpunit --testsuite $TEST_SUITE"
+
+notifications:
+  email:
+    - christoph.winkler@stud.fh-flensburg.de
