@@ -1,34 +1,30 @@
 language: php
-
 php:
-  - 5.6
+- 5.6
 cache:
   directories:
-    - vendor
-
+  - vendor
 env:
   global:
-    - APP_ENV=local
-    - APP_KEY=QkDrgCzGrL7LdJfta2xetcLKVXNSaW5T
-    - DB_DATABASE=todo
-    - DB_USERNAME=root
-    - DB_HOST=127.0.0.1
+  - APP_ENV=local
+  - APP_KEY=QkDrgCzGrL7LdJfta2xetcLKVXNSaW5T
+  - DB_DATABASE=todo
+  - DB_USERNAME=root
+  - DB_HOST=127.0.0.1
   matrix:
-    - TEST_SUITE=unit
-    - TEST_SUITE=integration
-    - TEST_SUITE=gui
-
+  - TEST_SUITE=unit
+  - TEST_SUITE=integration
+  - TEST_SUITE=gui
 install:
-  - composer install --prefer-dist
-
+- composer install --prefer-dist
 before_script:
-  - pip install --user awscli
-  - aws --version
-  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
-  - php artisan migrate
-
-script: "phpunit --testsuite $TEST_SUITE"
-
+- pip install --user awscli
+- aws --version
+- mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
+- php artisan migrate
+script: phpunit --testsuite $TEST_SUITE
 notifications:
   email:
-    - christoph.winkler@stud.fh-flensburg.de
+  - christoph.winkler@stud.fh-flensburg.de
+  slack:
+    secure: GuomK9UBeO38+QMxdg9gXDPKLy0DrjM8w5Y5VWjHMcYfXTDhZMuaE/oICQb1R8uWedvRVwM1TmyHU8j8CUl/rL+rHDnNhBmQQ9mDoeejVIcvhRUAYbI+x2UXljtScoVe70P9LwduQU5f28K2Pw/Hc8b2XnTrZoxu0MBp185OH3QggGxB7p3sXg/e1NXuMoZWcjzOTAS6iiOeXyy9RRoGwAYFjIM3z36ZlMEqE+01tQVOonU5tUX9F8Inv2Tu5p1Bbx4UuSgFy/H7FrtylRu+2CI4yLfCgWgIkvUi1MjBgyKtLzaYhTsMMxwQtSPP5gR9CTzi6th1joNokpuuqCdyTnyMq9C7NQYSwiobnjJrAoP2ccjqvMRy9G10STIW9OXTxbkdEQ8LaKXXX3/FVkEnIurN02dLTfyK37pC4ohuTGdrS5GZtcVdd7KPFHAIDyjX80b74rbCFqX/UBMevTBMQquB7chvPAGp6rmTN6r81ZkOPTDN5HU/YLSa45FsL+4nZvqjUGn+eUyhxWUoycMKVhBHtR+vaMNtdJZtG+fveb2EeR4Y9BaH+qF4qkfWw2zqjmEF9xUUSe0xOSgBDu1x2+Q9sxZ0ASM51QvalhgTo63Sidz1vphSqJvdmgwPao2YFakkArw9uHtpnXmo3TOwx5GyqhR8UDYNA6jqXxawN44=
