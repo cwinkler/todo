@@ -6,6 +6,7 @@ cache:
         - vendor
 
 before_script:
+    - pip --version
     - aws --version
 
 env:
