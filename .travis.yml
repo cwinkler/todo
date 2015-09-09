@@ -1,29 +1,29 @@
 language: php
+
 php:
-    - 5.6
+  - 5.6
 cache:
-    directories:
-        - vendor
+  directories:
+    - vendor
 
 env:
-    global:
-        - APP_ENV=local
-        - APP_KEY=QkDrgCzGrL7LdJfta2xetcLKVXNSaW5T
-        - DB_DATABASE=todo
-        - DB_USERNAME=root
-        - DB_HOST=127.0.0.1
-    - TEST_SUITE=unit
-    - TEST_SUITE=integration
-    - TEST_SUITE=gui
+  global:
+    - APP_ENV=local
+    - APP_KEY=QkDrgCzGrL7LdJfta2xetcLKVXNSaW5T
+    - DB_DATABASE=todo
+    - DB_USERNAME=root
+    - DB_HOST=127.0.0.1
+  - TEST_SUITE=unit
+  - TEST_SUITE=integration
+  - TEST_SUITE=gui
 
 install:
-    - composer install --prefer-dist
+  - composer install --prefer-dist
 
 before_script:
-    - pip install awscli
-    - aws --version
-    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
-    - php artisan migrate
+  - pip install awscli
+  - aws --version
+  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
+  - php artisan migrate
 
 script: "phpunit --testsuite $TEST_SUITE"
-
