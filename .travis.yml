@@ -3,6 +3,6 @@ php:
     - 5.6
 
 install:
-    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS `todo-test`;"
+    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS todo;"
     - composer install --prefer-dist
     - php artisan migrate
