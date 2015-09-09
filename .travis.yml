@@ -5,18 +5,26 @@ cache:
     directories:
         - vendor
 
-before_script:
-    - pip --version
-    - aws --version
-
 env:
+    global:
+        - APP_ENV=local
+        - APP_KEY=QkDrgCzGrL7LdJfta2xetcLKVXNSaW5T
+        - DB_DATABASE=todo
+        - DB_USERNAME=root
+        - DB_PASSWORD=
+        - DB_HOST=127.0.0.1
     - TEST_SUITE=unit
     - TEST_SUITE=integration
     - TEST_SUITE=gui
 
 install:
-    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS todo;"
     - composer install --prefer-dist
+
+before_script:
+    - pip install awscli
+    - aws --version
+    - mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
     - php artisan migrate
 
 script: "phpunit --testsuite $TEST_SUITE"
+
