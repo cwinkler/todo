@@ -4,8 +4,14 @@ php:
 cache:
     directories:
         - vendor
+env:
+    - TEST_SUITE=unit
+    - TEST_SUITE=integration
+    - TEST_SUITE=gui
 
 install:
     - mysql -u root -e "CREATE DATABASE IF NOT EXISTS todo;"
     - composer install --prefer-dist
     - php artisan migrate
+
+script: "phpunit --testsuite $TEST_SUITE"
