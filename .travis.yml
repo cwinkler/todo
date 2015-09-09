@@ -13,9 +13,10 @@ env:
     - DB_DATABASE=todo
     - DB_USERNAME=root
     - DB_HOST=127.0.0.1
-  - TEST_SUITE=unit
-  - TEST_SUITE=integration
-  - TEST_SUITE=gui
+  matrix:
+    - TEST_SUITE=unit
+    - TEST_SUITE=integration
+    - TEST_SUITE=gui
 
 install:
   - composer install --prefer-dist
