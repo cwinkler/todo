@@ -22,7 +22,7 @@ install:
   - composer install --prefer-dist
 
 before_script:
-  - pip install awscli
+  - pip install --user awscli
   - aws --version
   - mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_DATABASE;"
   - php artisan migrate
