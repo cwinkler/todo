@@ -4,6 +4,10 @@ php:
 cache:
     directories:
         - vendor
+
+before_script:
+    - aws --version
+
 env:
     - TEST_SUITE=unit
     - TEST_SUITE=integration
